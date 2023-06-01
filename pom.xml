@@ -9,14 +9,14 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.sxx</groupId>
-    <artifactId>guli_parent</artifactId>
+    <artifactId>cloud_based_learning</artifactId>
     <packaging>pom</packaging>
     <modules>
         <module>service</module>
+        <module>common</module>
+        <module>common/service_base</module>
     </modules>
     <version>0.0.1-SNAPSHOT</version>
-    <name>guli_parent</name>
-    <description>guli_parent</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -164,18 +164,19 @@
                 <version>${aliyun-sdk-oss.version}</version>
             </dependency>
 
-            <!--mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-sdk-vod-upload -Dversion=1.4.15 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.15.jar-->
             <dependency>
                 <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-java-sdk-vod</artifactId>
                 <version>${aliyun-java-sdk-vod.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-java-vod-upload</artifactId>
                 <version>${aliyun-java-vod-upload.version}</version>
             </dependency>
 
+            <!--mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-sdk-vod-upload -Dversion=1.4.15 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.15.jar-->
             <dependency>
                 <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-sdk-vod-upload</artifactId>
