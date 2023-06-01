@@ -1,5 +1,6 @@
 package com.sxx.eduservice.controller;
 
+import com.sxx.commonutils.R;
 import com.sxx.eduservice.entity.EduTeacher;
 import com.sxx.eduservice.service.EduTeacherService;
 import io.swagger.annotations.Api;
@@ -32,9 +33,9 @@ public class EduTeacherController {
      */
     @ApiOperation(value = "所有讲师列表")
     @GetMapping("/findAll")
-    public List<EduTeacher> findAllTeacher(){
+    public R findAllTeacher(){
         List<EduTeacher> list = eduTeacherService.list(null);
-        return list;
+        return R.ok().data("items",list);
     }
     /**
      * @description 逻辑删除讲师的方法
@@ -43,9 +44,13 @@ public class EduTeacherController {
      */
     @ApiOperation(value = "逻辑删除讲师")
     @DeleteMapping("/{id}")
-    public boolean removeTeacher(@ApiParam(name = "id",value = "讲师ID") @PathVariable String id) {
-        boolean flag = eduTeacherService.removeById(id);
-        return flag;
+    public R removeTeacher(@ApiParam(name = "id",value = "讲师ID") @PathVariable String id) {
+        EduTeacher teacher = eduTeacherService.getById(id);
+        if (teacher != null) {
+            boolean flag = eduTeacherService.removeById(id);
+            return R.ok();
+        }
+        return R.error();
     }
 
 }
