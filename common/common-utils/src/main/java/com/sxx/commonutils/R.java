@@ -56,6 +56,7 @@ public class R {
 
     /**
      * @description 链式编程
+     * @return this
      */
 
     public R success(Boolean success){
