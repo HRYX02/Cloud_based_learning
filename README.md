@@ -22,3 +22,34 @@ http://localhost/swagger-ui.html
   "data": "HashMap"
 }
 ```
+
+## 关于分页添加查询
+
+### 为什么可以将两种不同的参数类型传给data？
+
+方法的重载
+
+```java
+// 底层R类还是将data()中的参数put到map中了
+return R.ok().data("total",total).data("rows",records);
+
+// 手动创建Map，将map放到data()中
+Map map = new HashMap<>();
+map.put("total",total);
+map.put("records",records);
+return R.ok().data(map);
+```
+
+### MySQL中关于时间的查询语句
+
+**时间需要使用引号引起来**
+
+```mysql
+SELECT * FROM edu_teacher WHERE gmt_create >= '2019-01-01 10:10:10' AND gmt_create <= '2023-12-01 10:10:10'
+```
+
+### @RequestBody注解
+
+1. 如果使用了注解只能使用```PostMapping```提交
+2. required = false 表示该值可以没有(目前测验不写也行)
+3. put提交会使id出现问题，最好id单独提出来然后手动复制(目前测验没问题)1
