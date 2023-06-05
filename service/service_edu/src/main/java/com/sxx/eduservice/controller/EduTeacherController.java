@@ -6,6 +6,7 @@ import com.sxx.commonutils.R;
 import com.sxx.eduservice.TeacherQuery;
 import com.sxx.eduservice.entity.EduTeacher;
 import com.sxx.eduservice.service.EduTeacherService;
+import com.sxx.exceptionhandler.YunShangException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -80,7 +81,12 @@ public class EduTeacherController {
     public R pagetListTeacher(@ApiParam(name = "current",value = "当前页") @PathVariable long current,
                               @ApiParam(name = "limit",value = "每页显示记录数") @PathVariable long limit) {
 
-        int i = 10/0;
+        try {
+            int i = 10/0;
+        } catch (Exception e) {
+            // 执行自定义异常
+            throw new YunShangException(20001,"执行了自定义异常类");
+        }
 
         Page<EduTeacher> pageTeacher = new Page<>(current,limit);
         eduTeacherService.page(pageTeacher,null);

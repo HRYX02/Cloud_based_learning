@@ -1,6 +1,7 @@
 package com.sxx.exceptionhandler;
 
 import com.sxx.commonutils.R;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @create 2023-06-03-16:20
  */
 
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -26,4 +28,23 @@ public class GlobalExceptionHandler {
         return R.error().message("执行了全局异常处理");
     }
 
+    /**
+     * @description 特定异常
+     */
+    @ExceptionHandler(ArithmeticException.class)
+    @ResponseBody
+    public R error(ArithmeticException exception) {
+        exception.printStackTrace();
+        return R.error().message("执行了ArithmeticException异常处理");
+    }
+
+    /**
+     * @description 自定义异常处理
+     */
+    @ExceptionHandler(YunShangException.class)
+    @ResponseBody
+    public R error(YunShangException exception) {
+        log.error(exception.getMsg()+exception.getCode());
+        return R.error().code(exception.getCode()).message(exception.getMsg());
+    }
 }
