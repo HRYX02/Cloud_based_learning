@@ -144,7 +144,7 @@ public class EduTeacherController {
      * @description 修改讲师的接口方法
      */
     @ApiOperation(value = "修改讲师的接口方法")
-    @PutMapping("/updateTeacher")
+    @PostMapping("/updateTeacher")
     public R updateTeacher(@ApiParam(name = "eduTeacher",value = "要修改的老师") @RequestBody EduTeacher eduTeacher){
         boolean update = eduTeacherService.updateById(eduTeacher);
         if (update) {
