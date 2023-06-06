@@ -6,7 +6,6 @@ import com.sxx.commonutils.R;
 import com.sxx.eduservice.TeacherQuery;
 import com.sxx.eduservice.entity.EduTeacher;
 import com.sxx.eduservice.service.EduTeacherService;
-import com.sxx.exceptionhandler.YunShangException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -28,6 +27,7 @@ import java.util.Map;
 
 @Api(description = "讲师管理")
 @Slf4j
+@CrossOrigin
 @RestController
 @RequestMapping("/eduservice/teacher")
 public class EduTeacherController {
@@ -81,13 +81,6 @@ public class EduTeacherController {
     public R pagetListTeacher(@ApiParam(name = "current",value = "当前页") @PathVariable long current,
                               @ApiParam(name = "limit",value = "每页显示记录数") @PathVariable long limit) {
 
-        try {
-            int i = 10/0;
-        } catch (Exception e) {
-            // 执行自定义异常
-            throw new YunShangException(20001,"执行了自定义异常类");
-        }
-
         Page<EduTeacher> pageTeacher = new Page<>(current,limit);
         eduTeacherService.page(pageTeacher,null);
         long total = pageTeacher.getTotal();
@@ -107,10 +100,15 @@ public class EduTeacherController {
      */
     @ApiOperation(value = "条件查询带分页的方法")
     @PostMapping("/pageTeacherCondition/{current}/{limit}")
-    public R pageTeacherCondition(@ApiParam(name = "current",value = "当前页") @PathVariable long current,
-                                  @ApiParam(name = "limit",value = "每页显示记录数") @PathVariable long limit,
-                                  @ApiParam(name = "teacherQuery",value = "条件") @RequestBody(required = false) TeacherQuery teacherQuery) {
-        Page<EduTeacher> pageTeacher = new Page<>(current,limit);
+    public R pageTeacherCondition(@ApiParam(name = "current",value = "当前页") @PathVariable String current,
+                                  @ApiParam(name = "limit",value = "每页显示记录数") @PathVariable String limit,
+                                  @ApiParam(name = "teacherQuery",value = "条件") @RequestBody TeacherQuery teacherQuery) {
+
+//        Page<EduTeacher> pageTeacher = new Page<>(current,limit);
+
+        long l = Long.parseLong(current);
+        long l1 = Long.parseLong(limit);
+        Page<EduTeacher> pageTeacher = new Page<>(l,l1);
         LambdaQueryWrapper<EduTeacher> queryWrapper = new LambdaQueryWrapper<>();
         log.info(teacherQuery.toString());
 
