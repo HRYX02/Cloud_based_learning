@@ -117,6 +117,7 @@ public class EduTeacherController {
         queryWrapper.eq(teacherQuery.getLevel() != null,EduTeacher::getLevel,teacherQuery.getLevel());
         queryWrapper.ge(StringUtils.isNotEmpty(teacherQuery.getBegin()),EduTeacher::getGmtCreate,teacherQuery.getBegin());
         queryWrapper.le(StringUtils.isNotEmpty(teacherQuery.getEnd()),EduTeacher::getGmtCreate,teacherQuery.getEnd());
+        queryWrapper.orderByDesc(EduTeacher::getGmtCreate).orderByDesc(EduTeacher::getName);
         eduTeacherService.page(pageTeacher,queryWrapper);
 
         long total = pageTeacher.getTotal();
