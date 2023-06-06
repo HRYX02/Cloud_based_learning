@@ -68,3 +68,7 @@ SELECT * FROM edu_teacher WHERE gmt_create >= '2019-01-01 10:10:10' AND gmt_crea
 #### 日志
 ```<property name="log.path" value="D:\Project\cloud_based_learning\log" />```
 clone项目时，更改日志文件位置
+#### 前后端
+##### 跨域问题
+
+后端直接在controller上加```@CrossOrigin()```注解

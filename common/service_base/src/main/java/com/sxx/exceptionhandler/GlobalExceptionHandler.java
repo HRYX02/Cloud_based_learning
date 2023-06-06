@@ -44,7 +44,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(YunShangException.class)
     @ResponseBody
     public R error(YunShangException exception) {
-        log.error(exception.getMsg()+exception.getCode());
+        log.error(exception.getMsg());
         return R.error().code(exception.getCode()).message(exception.getMsg());
     }
 }
