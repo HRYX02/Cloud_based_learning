@@ -7,9 +7,9 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:33068/guli?serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8
     username: root
-    password: 123456
+    password: Sxx15963559164
   # 返回json的全局时间格式
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss

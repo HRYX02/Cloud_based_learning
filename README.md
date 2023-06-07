@@ -72,3 +72,9 @@ clone项目时，更改日志文件位置
 ##### 跨域问题
 
 后端直接在controller上加```@CrossOrigin()```注解
+
+### oss模块
+#### 启动时出现保存
+基础配置完成后启动oss出现```Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.```
+#### 解决
+```@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)```启动时忽略数据源

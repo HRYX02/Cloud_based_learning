@@ -3,7 +3,7 @@ package com.sxx.eduservice.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sxx.commonutils.R;
-import com.sxx.eduservice.TeacherQuery;
+import com.sxx.eduservice.entity.vo.TeacherQuery;
 import com.sxx.eduservice.entity.EduTeacher;
 import com.sxx.eduservice.service.EduTeacherService;
 import io.swagger.annotations.Api;
