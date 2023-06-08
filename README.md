@@ -78,3 +78,10 @@ clone项目时，更改日志文件位置
 基础配置完成后启动oss出现```Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.```
 #### 解决
 ```@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)```启动时忽略数据源
+
+### nginx代理
+
+- vue端口:80
+- nginx代理端口: 8080 
+- service_edu模块端口:8081
+- service_oss模块端口:8082
