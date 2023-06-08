@@ -16,8 +16,10 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @ComponentScan(basePackages = {"com.sxx"})
 public class OssApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(OssApplication.class,args);
         log.info("service_oss模块启动成功");
+
     }
 }
