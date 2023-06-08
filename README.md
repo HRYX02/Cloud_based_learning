@@ -1,9 +1,29 @@
-# 项目启动配置更改
-## MySQL数据库名账户密码
+# 云上学习README
+
+## 项目启动配置更改
+
+### MySQL数据库名账户密码
+
 ```url: jdbc:mysql://localhost:33068/guli?serverTimezone=GMT%2B8```
-## 日志保存位置
+
+### 日志保存位置
+
 ```<property name="log.path" value="D:\Project\cloud_based_learning\log" />```
-# 项目编写问题记录
+
+## 项目添加模块
+
+>  本项目使用的是```MyBatis-Plus```代码生成器生成的```entity``````mapper``````service``````serivviceImpl```以及```controller```类
+
+运行```service/service_edu/src/test/java/com/sxx/codegenerator/CodeGenerator.java```文件，更改该文件中的
+
+1. mvc类文件位置```gc.setOutputDir```
+2. 数据库连接
+    1. url```setUrl```
+    2. 如果是MySQL5.7修改驱动类```setDriverName```
+    3. 用户名密码```setUsername```和```setPassword```
+
+## 项目编写问题记录
+
 ## 由于aliyun-java-vod-upload、aliyun-sdk-vod-upload和aliyun-sdk-oss 暂未开源所以只能手动安装
 在jar包目录下使用cmd
 ```bash
@@ -59,7 +79,7 @@ SELECT * FROM edu_teacher WHERE gmt_create >= '2019-01-01 10:10:10' AND gmt_crea
 2. required = false 表示该值可以没有(目前测验不写也行)
 3. put提交会使id出现问题，最好id单独提出来然后手动复制(目前测验没问题)
 
-### 异常$日志处理
+### 异常&日志处理
 
 #### 异常
 1. 创建自定义异常继承```RuntimeException```
@@ -85,3 +105,13 @@ clone项目时，更改日志文件位置
 - nginx代理端口: 8080 
 - service_edu模块端口:8081
 - service_oss模块端口:8082
+
+### easy-excel读写
+位置在```service/service_edu/src/test/java/com/sxx/codegenerator/excel```
+
+### MultipartFile上传文件注意问题
+
+1. 上传图片默认参数名称为```file```
+2. 上传文件默认参数名称为```multipartFile```
+
+可以使用```@RequestParam```注解接收文件然后形参统一命名
