@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 @RestController
 @CrossOrigin
-@RequestMapping("/eduservice/edu-subject")
+@RequestMapping("/eduservice/edusubject")
 public class EduSubjectController {
     @Autowired
     private EduSubjectService eduSubjectService;
