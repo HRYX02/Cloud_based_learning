@@ -2,6 +2,7 @@ package com.sxx.eduservice.controller;
 
 
 import com.sxx.commonutils.R;
+import com.sxx.eduservice.entity.subject.OneSubject;
 import com.sxx.eduservice.service.EduSubjectService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * @description 课程科目 前端控制器
@@ -34,6 +37,16 @@ public class EduSubjectController {
     public R addSubject(@ApiParam(name = "multipartFile",value = "excel文件") @RequestParam("multipartFile") MultipartFile file) {
         eduSubjectService.saveSubject(eduSubjectService,file);
         return R.ok();
+    }
+
+    /**
+     *  @description 课程分类列表(树形)
+     */
+    @ApiOperation("课程分类列表(树形)")
+    @GetMapping("/getAllSubject")
+    public R getAllSubject() {
+        List<OneSubject> allOneTwoSubject = eduSubjectService.getAllOneTwoSubject();
+        return R.ok().data("list",allOneTwoSubject);
     }
 }
 

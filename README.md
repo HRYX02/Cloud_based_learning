@@ -24,15 +24,18 @@
 
 ## 项目编写问题记录
 
-## 由于aliyun-java-vod-upload、aliyun-sdk-vod-upload和aliyun-sdk-oss 暂未开源所以只能手动安装
+### 由于aliyun-java-vod-upload、aliyun-sdk-vod-upload和aliyun-sdk-oss 暂未开源所以只能手动安装
+
 在jar包目录下使用cmd
 ```bash
 mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-java-vod-upload -Dversion=1.4.15 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.15.jar
 ```
-## swagger访问地址
+### swagger访问地址
+
 http://localhost/swagger-ui.html
 
-## 统一结果
+### 统一结果
+
 | 标识 | 含义 |
 |---------|-------------|
 | success | 响应是否成功      |
@@ -48,9 +51,9 @@ http://localhost/swagger-ui.html
 }
 ```
 
-## 关于分页添加查询
+### 关于分页添加查询
 
-### 为什么可以将两种不同的参数类型传给data？
+#### 为什么可以将两种不同的参数类型传给data？
 
 方法的重载
 
@@ -65,7 +68,7 @@ map.put("records",records);
 return R.ok().data(map);
 ```
 
-### MySQL中关于时间的查询语句
+#### MySQL中关于时间的查询语句
 
 **时间需要使用引号引起来**
 
@@ -88,13 +91,30 @@ SELECT * FROM edu_teacher WHERE gmt_create >= '2019-01-01 10:10:10' AND gmt_crea
 #### 日志
 ```<property name="log.path" value="D:\Project\cloud_based_learning\log" />```
 clone项目时，更改日志文件位置
-#### 前后端
-##### 跨域问题
+
+### 前后端
+
+#### 跨域问题
 
 后端直接在controller上加```@CrossOrigin()```注解
 
-### oss模块
+### service_edu模块
+
+#### easy-excel读写
+
+位置在```service/service_edu/src/test/java/com/sxx/codegenerator/excel```
+
+#### MultipartFile上传文件注意问题
+
+1. 上传图片默认参数名称为```file```
+2. 上传文件默认参数名称为```multipartFile```
+
+可以使用```@RequestParam```注解接收文件然后形参统一命名
+
+### service_oss模块
+
 #### 启动时出现保存
+
 基础配置完成后启动oss出现```Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.```
 #### 解决
 ```@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)```启动时忽略数据源
@@ -106,12 +126,47 @@ clone项目时，更改日志文件位置
 - service_edu模块端口:8081
 - service_oss模块端口:8082
 
-### easy-excel读写
-位置在```service/service_edu/src/test/java/com/sxx/codegenerator/excel```
+### 热部署
 
-### MultipartFile上传文件注意问题
+#### IDEA
 
-1. 上传图片默认参数名称为```file```
-2. 上传文件默认参数名称为```multipartFile```
+1. Compiler -> BuiId project automatically
+2. Advanced Settings -> AIIow auto-make to start e ven if developed application is currently running
+3. Modify options -> On 'Update' action
 
-可以使用```@RequestParam```注解接收文件然后形参统一命名
+#### 如果多个模块都有SpringBoot启动类那么就需要给devtools不同的端口
+
+默认端口为35729
+
+在配置类中
+
+```yml
+spring:
+	devtools:
+    	livereload:
+     		port: 35731
+```
+
+#### SpringBoot
+
+```xml
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-devtools</artifactId>
+   	<scope>runtime</scope>
+    <optional>true</optional>
+</dependency>
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <fork>true</fork>
+                <addResources>true</addResources>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
