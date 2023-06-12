@@ -24,7 +24,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @CrossOrigin
-@RequestMapping("/eduservice/edusubject")
+@RequestMapping("/eduservice/subject")
 public class EduSubjectController {
     @Autowired
     private EduSubjectService eduSubjectService;
