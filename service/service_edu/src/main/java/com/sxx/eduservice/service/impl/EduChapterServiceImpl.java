@@ -9,6 +9,7 @@ import com.sxx.eduservice.entity.chapter.VideoVO;
 import com.sxx.eduservice.mapper.EduChapterMapper;
 import com.sxx.eduservice.service.EduChapterService;
 import com.sxx.eduservice.service.EduVideoService;
+import com.sxx.exceptionhandler.YunShangException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>
- * 课程 服务实现类
- * </p>
- *
+ * @description 章节实现类
  * @author SxxStar
  * @since 2023-06-12
  */
@@ -30,6 +28,9 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
     @Autowired
     private EduVideoService videoService;
 
+    /**
+     * @description 根据id得到章节和小结并封装
+     */
     @Override
     public List<ChapterVO> getChapterVideoByCourseId(String courseId) {
 
@@ -64,5 +65,24 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
             chapterVO.setChildren(videoList);
         }
         return finalList;
+    }
+
+
+    /**
+     * @description 根据id删除章节
+     * @return
+     */
+    @Override
+    public boolean deleteChapter(String chapterId) {
+        // 根据chapterId章节id查询小节表，如果有数据就不删
+        LambdaQueryWrapper<EduVideo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(EduVideo::getChapterId,chapterId);
+        int count = videoService.count(queryWrapper);
+        if (count > 0) {
+            throw new YunShangException(20001,"不能删除");
+        } else {
+            boolean removeById = this.removeById(chapterId);
+            return removeById;
+        }
     }
 }

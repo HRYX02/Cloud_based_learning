@@ -59,6 +59,7 @@ public class EduCourse implements Serializable {
     private Long viewCount;
 
     @ApiModelProperty(value = "乐观锁")
+    @Version
     private Long version;
 
     @ApiModelProperty(value = "课程状态 Draft未发布  Normal已发布")
