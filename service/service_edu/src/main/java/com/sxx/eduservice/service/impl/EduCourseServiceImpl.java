@@ -65,14 +65,13 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         return courseInfoVo;
     }
 
-    // TODO 测试BUG
     @Override
     public void updateCourseInfo(CourseInfoVo courseInfoVo) {
         // 修改课程表
         EduCourse eduCourse = new EduCourse();
         BeanUtils.copyProperties(courseInfoVo,eduCourse);
         boolean updateByIdCourse = this.updateById(eduCourse);
-        if (updateByIdCourse) {
+        if (!updateByIdCourse) {
             throw new YunShangException(20001,"修改课程信息失败");
         }
 
@@ -80,7 +79,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         EduCourseDescription eduCourseDescription = new EduCourseDescription();
         BeanUtils.copyProperties(courseInfoVo,eduCourseDescription);
         boolean updateByIdDescription = courseDescriptionService.updateById(eduCourseDescription);
-        if (updateByIdDescription) {
+        if (!updateByIdDescription) {
             throw new YunShangException(20001,"修改课程描述失败");
         }
     }
