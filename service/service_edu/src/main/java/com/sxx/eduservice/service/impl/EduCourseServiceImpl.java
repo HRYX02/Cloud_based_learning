@@ -3,6 +3,7 @@ package com.sxx.eduservice.service.impl;
 import com.sxx.eduservice.entity.EduCourse;
 import com.sxx.eduservice.entity.EduCourseDescription;
 import com.sxx.eduservice.entity.vo.CourseInfoVo;
+import com.sxx.eduservice.entity.vo.CoursePublishVO;
 import com.sxx.eduservice.mapper.EduCourseMapper;
 import com.sxx.eduservice.service.EduCourseDescriptionService;
 import com.sxx.eduservice.service.EduCourseService;
@@ -82,5 +83,11 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         if (!updateByIdDescription) {
             throw new YunShangException(20001,"修改课程描述失败");
         }
+    }
+
+    @Override
+    public CoursePublishVO publishCourseInfo(String id) {
+        CoursePublishVO publishCourseInfo = baseMapper.getPublishCourseInfo(id);
+        return publishCourseInfo;
     }
 }

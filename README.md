@@ -115,6 +115,34 @@ clone项目时，更改日志文件位置
 
 List集合的赋值是**引用地址值**，即使先向list中添加一条数据，比如一个对象，随后调用该对象的```set()```方法修改该对象的值，List集合中的该条数据仍然改变
 
+#### Invalid bound statement (not found): com.sxx.eduservice.mapper.EduCourseMapper.getPublishCourseInfo
+
+maven加载时候把java文件夹中的```.java```文件编译如果有其他文件无法加载如```.xml```文件
+
+##### 解决
+
+```xml
+<!-- 项目打包时会将java目录中的*.xml文件也进行打包 -->
+<build>
+	<resources>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+    </resources>
+</build>    
+```
+
+```yml
+mybatis-plus:
+  mapper-locations: classpath:com/sxx/eduservice/mapper/xml/*.xml
+```
+
+
+
 ### service_oss模块
 
 #### 启动时出现保存

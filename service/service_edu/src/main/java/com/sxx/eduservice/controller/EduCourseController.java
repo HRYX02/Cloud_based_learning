@@ -2,7 +2,9 @@ package com.sxx.eduservice.controller;
 
 
 import com.sxx.commonutils.R;
+import com.sxx.eduservice.entity.EduCourse;
 import com.sxx.eduservice.entity.vo.CourseInfoVo;
+import com.sxx.eduservice.entity.vo.CoursePublishVO;
 import com.sxx.eduservice.service.EduCourseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -53,8 +55,31 @@ public class EduCourseController {
      */
     @ApiOperation("修改课程信息")
     @PostMapping("/updateCourseInfo")
-    public R updateCourseInfo(@ApiParam("课程信息")@RequestBody CourseInfoVo courseInfoVo){
+    public R updateCourseInfo(@ApiParam("课程信息") @RequestBody CourseInfoVo courseInfoVo){
         courseService.updateCourseInfo(courseInfoVo);
+        return R.ok();
+    }
+
+    /**
+     * @description 根据课程ID查询课程确认信息
+     */
+    @ApiOperation("查询课程确认信息")
+    @GetMapping("/getPublishCourseInfo/{id}")
+    public R getPublishCourseInfo(@ApiParam("课程ID") @PathVariable String id) {
+        CoursePublishVO coursePublishVO = courseService.publishCourseInfo(id);
+        return R.ok().data("publishCourse",coursePublishVO);
+    }
+
+    /**
+     * @description 课程的最终发布-修改课程状态
+     */
+    @ApiOperation("课程的最终发布-修改课程状态")
+    @PostMapping("/publishCourse/{id}")
+    public R publishCourseInfo(@ApiParam("课程ID") @PathVariable String id) {
+        EduCourse eduCourse = new EduCourse();
+        eduCourse.setId(id);
+        eduCourse.setStatus("Normal");
+        courseService.updateById(eduCourse);
         return R.ok();
     }
 }
