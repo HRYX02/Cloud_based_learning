@@ -104,13 +104,10 @@ public class EduTeacherController {
                                   @ApiParam(name = "limit",value = "每页显示记录数") @PathVariable String limit,
                                   @ApiParam(name = "teacherQuery",value = "条件") @RequestBody TeacherQuery teacherQuery) {
 
-//        Page<EduTeacher> pageTeacher = new Page<>(current,limit);
-
         long l = Long.parseLong(current);
         long l1 = Long.parseLong(limit);
         Page<EduTeacher> pageTeacher = new Page<>(l,l1);
         LambdaQueryWrapper<EduTeacher> queryWrapper = new LambdaQueryWrapper<>();
-        log.info(teacherQuery.toString());
 
         // 多条件组合查询
         queryWrapper.like(StringUtils.isNotEmpty(teacherQuery.getName()),EduTeacher::getName,teacherQuery.getName());

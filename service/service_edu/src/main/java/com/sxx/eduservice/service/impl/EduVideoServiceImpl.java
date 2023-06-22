@@ -1,5 +1,6 @@
 package com.sxx.eduservice.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.sxx.eduservice.entity.EduVideo;
 import com.sxx.eduservice.mapper.EduVideoMapper;
 import com.sxx.eduservice.service.EduVideoService;
@@ -17,4 +18,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> implements EduVideoService {
 
+    /**
+     * @description 删除小节
+     * TODO 视频文件对应删除
+     * @param courseId 课程ID
+     */
+    @Override
+    public void removeVideoCourseId(String courseId) {
+        LambdaQueryWrapper<EduVideo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(EduVideo::getCourseId,courseId);
+        this.remove(queryWrapper);
+    }
 }

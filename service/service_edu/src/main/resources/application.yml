@@ -19,11 +19,7 @@ spring:
       port: 35731
 
 # 不使用默认的log4j
-#mybatis-plus:
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-#logging:
-#  level:
 mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:com/sxx/eduservice/mapper/xml/*.xml
-#    root: info

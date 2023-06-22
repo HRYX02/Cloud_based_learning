@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * @author SxxStar
  * @since 2023-06-12
  */
-@Api("课程大纲-小节")
+@Api(description = "课程大纲-小节")
 @Slf4j
 @CrossOrigin
 @RestController
@@ -41,7 +41,6 @@ public class EduVideoController {
 
     /***
      * @desprition 删除小节
-     * TODO 后面方法需要完善 删除小节同时删除视频
      */
     @ApiOperation("删除小节")
     @DeleteMapping("/{id}")

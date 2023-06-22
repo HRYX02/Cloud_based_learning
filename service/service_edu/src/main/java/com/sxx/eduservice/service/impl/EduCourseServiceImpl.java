@@ -5,6 +5,7 @@ import com.sxx.eduservice.entity.EduCourseDescription;
 import com.sxx.eduservice.entity.vo.CourseInfoVo;
 import com.sxx.eduservice.entity.vo.CoursePublishVO;
 import com.sxx.eduservice.mapper.EduCourseMapper;
+import com.sxx.eduservice.service.EduChapterService;
 import com.sxx.eduservice.service.EduCourseDescriptionService;
 import com.sxx.eduservice.service.EduCourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -27,6 +28,10 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     @Autowired
     private EduCourseDescriptionService courseDescriptionService;
+    @Autowired
+    private EduVideoServiceImpl videoService;
+    @Autowired
+    private EduChapterService chapterService;
 
     /**
      * @description 添加课程基本信息
@@ -38,6 +43,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         // CourseInfoVo转换为eduCourse对象
         EduCourse eduCourse = new EduCourse();
         BeanUtils.copyProperties(courseInfoVo,eduCourse);
+        eduCourse.setIsDeleted(0);
         boolean save = this.save(eduCourse);
 
         if (!save) {
@@ -51,6 +57,9 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         return eduCourse.getId();
     }
 
+    /**
+     * @description 查询课程基本信息
+     */
     @Override
     public CourseInfoVo getCourseInfo(String courseId) {
         // 查询课程表
@@ -66,6 +75,9 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         return courseInfoVo;
     }
 
+    /**
+     * @description 修改课程基本信息
+     */
     @Override
     public void updateCourseInfo(CourseInfoVo courseInfoVo) {
         // 修改课程表
@@ -85,9 +97,34 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         }
     }
 
+    /**
+     * @description 获取最终确认的所有信息
+     */
     @Override
     public CoursePublishVO publishCourseInfo(String id) {
         CoursePublishVO publishCourseInfo = baseMapper.getPublishCourseInfo(id);
         return publishCourseInfo;
+    }
+
+    /**
+     * @description 删除课程
+     */
+    @Transactional
+    @Override
+    public void removeCourse(String courseId) {
+        // 1 根据课程ID删除小节
+        videoService.removeVideoCourseId(courseId);
+
+        // 2 根据课程ID删除章节
+        chapterService.removeChapterByCourseId(courseId);
+
+        // 3 根据课程ID删除描述
+        courseDescriptionService.removeById(courseId);
+
+        // 4 根据课程ID删除课程本身
+        boolean remove = this.removeById(courseId);
+        if (!remove) {
+            throw new YunShangException(20001,"删除失败");
+        }
     }
 }

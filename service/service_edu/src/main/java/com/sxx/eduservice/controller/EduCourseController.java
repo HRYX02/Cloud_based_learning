@@ -1,17 +1,23 @@
 package com.sxx.eduservice.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sxx.commonutils.R;
 import com.sxx.eduservice.entity.EduCourse;
 import com.sxx.eduservice.entity.vo.CourseInfoVo;
 import com.sxx.eduservice.entity.vo.CoursePublishVO;
+import com.sxx.eduservice.entity.vo.CourseQuery;
 import com.sxx.eduservice.service.EduCourseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @description 课程 前端控制器
@@ -79,7 +85,38 @@ public class EduCourseController {
         EduCourse eduCourse = new EduCourse();
         eduCourse.setId(id);
         eduCourse.setStatus("Normal");
-        courseService.updateById(eduCourse);
+        boolean update = courseService.updateById(eduCourse);
+        return R.ok().data("data",update);
+    }
+
+    /**
+     * @description 课程列表-基本实现
+     */
+    @ApiOperation("课程列表")
+    @PostMapping("/pageCourseCondition/{current}/{limit}")
+    public R getCourseList(@ApiParam(name = "current",value = "当前页") @PathVariable String current,
+                           @ApiParam(name = "limit",value = "每页显示记录数") @PathVariable String limit,
+                           @ApiParam(name = "courseQuery",value = "条件") @RequestBody CourseQuery courseQuery) {
+
+        long l = Long.parseLong(current);
+        long l1 = Long.parseLong(limit);
+        Page<EduCourse> pageInfo = new Page<>(l,l1);
+        LambdaQueryWrapper<EduCourse> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.like(StringUtils.isNotEmpty(courseQuery.getTitle()),EduCourse::getTitle,courseQuery.getTitle());
+        queryWrapper.eq(StringUtils.isNotEmpty(courseQuery.getStatus()),EduCourse::getStatus,courseQuery.getStatus());
+        courseService.page(pageInfo, queryWrapper);
+        long total = pageInfo.getTotal();
+        List<EduCourse> records = pageInfo.getRecords();
+        return R.ok().data("total",total).data("rows",records);
+    }
+
+    /**
+     * @description 删除课程
+     */
+    @ApiOperation("删除课程")
+    @DeleteMapping("{courseId}")
+    public R deleteCourse(@ApiParam("课程Id") @PathVariable String courseId) {
+        courseService.removeCourse(courseId);
         return R.ok();
     }
 }
