@@ -1,4 +1,4 @@
-package com.sxx.oss;
+package com.sxx.vod;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -8,16 +8,15 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author SHIXINXI
- * @description 阿里云对象存储启动类，文件上传
- * exclude = DataSourceAutoConfiguration.class忽略数据源
- * @create 2023-06-07-16:41
+ * @description
+ * @create 2023-07-16-18:18
  */
 @Slf4j
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @ComponentScan(basePackages = {"com.sxx"})
-public class OssApplication {
+public class VodApplication {
     public static void main(String[] args) {
-        SpringApplication.run(OssApplication.class,args);
-        log.info("service_oss模块启动成功");
+        SpringApplication.run(VodApplication.class,args);
+        log.info("service_vod模块启动成功");
     }
 }

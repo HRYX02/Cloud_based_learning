@@ -1,0 +1,21 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: service-vod
+  profiles:
+    active: dev
+  devtools:
+    livereload:
+      port: 35733
+  servlet:
+    multipart:
+      # 最大上传单个文件大小：默认1MB
+      max-file-size: 1024MB
+      # 最大置总上传的数据大小：默认10MB
+      max-request-size: 1024MB
+aliyun:
+  oss:
+    file:
+      keyid: LTAI5t6Mk4SiuysEEZySK1UW
+      keysecret: 7hqAQYxxxgRkoFmZP2wqnxbiMDJ0cm

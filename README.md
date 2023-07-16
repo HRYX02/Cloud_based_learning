@@ -11,7 +11,7 @@
 ```<property name="log.path" value="D:\Project\cloud_based_learning\log" />```
 
 ## 项目添加模块
-
+mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-java-vod-upload -Dversion=1.4.15 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.15.jar
 >  本项目使用的是```MyBatis-Plus```代码生成器生成的```entity``````mapper``````service``````serivviceImpl```以及```controller```类
 
 运行```service/service_edu/src/test/java/com/sxx/codegenerator/CodeGenerator.java```文件，更改该文件中的
@@ -28,7 +28,7 @@
 
 在jar包目录下使用cmd
 ```bash
-mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-java-vod-upload -Dversion=1.4.15 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.15.jar
+
 ```
 ### swagger访问地址
 
@@ -151,12 +151,39 @@ mybatis-plus:
 #### 解决
 ```@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)```启动时忽略数据源
 
-### nginx代理
+### service_vod模块
+
+#### 上传视频Tomcat报错超过1M
+
+> Maximum upload size exceeded; nested exception is java.lang.IllegalStateException: org.apache.tomcat.util.http.fileupload.FileUploadBase$FileSizeLimitExceededException: The field file exceeds its maximum permitted size of 1048576 bytes.
+
+#### 解决
+
+```yml
+spring:
+  servlet:
+    multipart:
+      # 最大上传单个文件大小：默认1MB
+      max-file-size: 1024MB
+      # 最大置总上传的数据大小：默认10MB
+      max-request-size: 1024MB
+```
+
+### nginx
+
+#### nginx代理
 
 - vue端口:80
 - nginx代理端口: 8080 
 - service_edu模块端口:8081
 - service_oss模块端口:8082
+- service_vod模块端口:8083
+
+#### nginx传输文件大小限制
+
+##### 解决
+
+在```nginx.conf```中添加```client_max_body_size 1024m;```
 
 ### 热部署
 

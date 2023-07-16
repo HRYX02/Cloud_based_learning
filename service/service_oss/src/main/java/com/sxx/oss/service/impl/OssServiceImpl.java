@@ -3,7 +3,7 @@ package com.sxx.oss.service.impl;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.sxx.oss.service.OssService;
-import com.sxx.oss.utils.ConstantPropertiestils;
+import com.sxx.oss.utils.ConstantPropertiesUtils;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,10 +23,10 @@ public class OssServiceImpl implements OssService {
     @Override
     public String uploadFileAvatar(MultipartFile file) {
 
-        String endpoint = ConstantPropertiestils.END_POINT;
-        String accessKeyId = ConstantPropertiestils.KEY_ID;
-        String accessKeySecret = ConstantPropertiestils.KEY_SECRET;
-        String bucketName = ConstantPropertiestils.BUCKET_NAME;
+        String endpoint = ConstantPropertiesUtils.END_POINT;
+        String accessKeyId = ConstantPropertiesUtils.KEY_ID;
+        String accessKeySecret = ConstantPropertiesUtils.KEY_SECRET;
+        String bucketName = ConstantPropertiesUtils.BUCKET_NAME;
 
 
         try {

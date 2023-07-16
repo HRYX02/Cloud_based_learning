@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class ConstantPropertiestils implements InitializingBean {
+public class ConstantPropertiesUtils implements InitializingBean {
     @Value("${aliyun.oss.file.endpoint}")
     private String endPoint;
     @Value("${aliyun.oss.file.keyid}")

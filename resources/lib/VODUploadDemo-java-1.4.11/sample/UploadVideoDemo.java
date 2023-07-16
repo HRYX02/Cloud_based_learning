@@ -157,6 +157,8 @@ public class UploadVideoDemo {
         //request.setSlowRequestsThreshold(300000L);
         /* 是否显示水印(可选)，指定模板组ID时，根据模板组配置确定是否显示水印*/
         //request.setIsShowWaterMark(true);
+        /* 设置上传完成后的回调URL(可选)，建议您通过点播控制台配置事件通知，参见文档 https://help.aliyun.com/document_detail/55627.html */
+        //request.setCallback("http://callback.sample.com");
         /* 自定义消息回调设置(可选)，参数说明参考文档 https://help.aliyun.com/document_detail/86952.html#UserData */
         // request.setUserData("{\"Extend\":{\"test\":\"www\",\"localId\":\"xxxx\"},\"MessageCallback\":{\"CallbackURL\":\"http://test.test.com\"}}");
         /* 视频分类ID(可选) */
@@ -272,6 +274,8 @@ public class UploadVideoDemo {
         UploadFileStreamRequest request = new UploadFileStreamRequest(accessKeyId, accessKeySecret, title, fileName);
         /* 是否使用默认水印(可选)，指定模板组ID时，根据模板组配置确定是否使用默认水印*/
         //request.setShowWaterMark(true);
+        /* 设置上传完成后的回调URL(可选)，建议通过点播控制台配置消息监听事件，参见文档 https://help.aliyun.com/document_detail/57029.html */
+        //request.setCallback("http://callback.sample.com");
         /* 自定义消息回调设置，参数说明参考文档 https://help.aliyun.com/document_detail/86952.html#UserData */
         //request.setUserData(""{\"Extend\":{\"test\":\"www\",\"localId\":\"xxxx\"},\"MessageCallback\":{\"CallbackURL\":\"http://test.test.com\"}}"");
         /* 视频分类ID(可选) */
@@ -324,6 +328,8 @@ public class UploadVideoDemo {
         UploadStreamRequest request = new UploadStreamRequest(accessKeyId, accessKeySecret, title, fileName, inputStream);
          /* 是否使用默认水印(可选)，指定模板组ID时，根据模板组配置确定是否使用默认水印*/
         //request.setShowWaterMark(true);
+        /* 设置上传完成后的回调URL(可选)，建议通过点播控制台配置消息监听事件，参见文档 https://help.aliyun.com/document_detail/57029.html */
+        //request.setCallback("http://callback.sample.com");
         /* 自定义消息回调设置，参数说明参考文档 https://help.aliyun.com/document_detail/86952.html#UserData */
         //request.setUserData(""{\"Extend\":{\"test\":\"www\",\"localId\":\"xxxx\"},\"MessageCallback\":{\"CallbackURL\":\"http://test.test.com\"}}"");
         /* 视频分类ID(可选) */
@@ -485,6 +491,8 @@ public class UploadVideoDemo {
         request.setTaskNum(1);
         /* 是否显示水印(可选)，指定模板组ID时，根据模板组配置确定是否显示水印*/
         //request.getShowWaterMark(true);
+        /* 设置上传完成后的回调URL(可选)，建议您通过点播控制台配置事件通知，参见文档 https://help.aliyun.com/document_detail/55627.html */
+        //request.setCallback("http://callback.sample.com");
         /* 自定义消息回调设置(可选)，参数说明参考文档 https://help.aliyun.com/document_detail/86952.html#UserData */
         // request.setUserData("{\"Extend\":{\"test\":\"www\",\"localId\":\"xxxx\"},\"MessageCallback\":{\"CallbackURL\":\"http://test.test.com\"}}");
         /* 视频分类ID(可选) */
