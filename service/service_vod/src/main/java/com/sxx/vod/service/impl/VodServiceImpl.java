@@ -3,8 +3,13 @@ package com.sxx.vod.service.impl;
 import com.aliyun.vod.upload.impl.UploadVideoImpl;
 import com.aliyun.vod.upload.req.UploadStreamRequest;
 import com.aliyun.vod.upload.resp.UploadStreamResponse;
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.sxx.exceptionhandler.YunShangException;
 import com.sxx.vod.service.VodService;
 import com.sxx.vod.utils.ConstantVodUtils;
+import com.sxx.vod.utils.InitVodClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,7 +19,7 @@ import java.io.InputStream;
 
 /**
  * @author SHIXINXI
- * @description
+ * @description 阿里云视频点播实现类
  * @create 2023-07-16-18:57
  */
 @Slf4j
@@ -22,7 +27,7 @@ import java.io.InputStream;
 public class VodServiceImpl implements VodService {
 
     /**
-     *  @description 上传文件到阿里云
+     * @description 上传视频到阿里云
      */
     @Override
     public String uploadVideoAlYun(MultipartFile file) {
@@ -48,6 +53,22 @@ public class VodServiceImpl implements VodService {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /**
+     * @description 根据id删除视频
+     */
+    @Override
+    public void removeVideoAlYun(String id) {
+        try {
+            DefaultAcsClient client = InitVodClient.initVodClient(ConstantVodUtils.KEY_ID, ConstantVodUtils.KEY_SECRET);
+            DeleteVideoRequest request = new DeleteVideoRequest();
+            request.setVideoIds(id);
+            client.getAcsResponse(request);
+        } catch (ClientException e) {
+            e.printStackTrace();
+            throw new YunShangException(20001,"删除视频失败");
         }
     }
 }

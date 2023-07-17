@@ -9,4 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface VodService {
     String uploadVideoAlYun(MultipartFile file);
+
+    void removeVideoAlYun(String id);
 }
