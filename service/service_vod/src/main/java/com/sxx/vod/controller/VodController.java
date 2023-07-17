@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * @author SHIXINXI
  * @description 视频上传Controller
@@ -44,4 +46,14 @@ public class VodController {
         return R.ok();
     }
 
+    /**
+     * @description 删除多个阿里云视频的方法
+     * @param videoIdList 参数多个视频id
+     * @return
+     */
+    @DeleteMapping("/delete-batch")
+    public R deleteBatch(@RequestParam("videoIdList") List<String> videoIdList) {
+        vodService.removeAlYunVideoList(videoIdList);
+        return R.ok();
+    }
 }

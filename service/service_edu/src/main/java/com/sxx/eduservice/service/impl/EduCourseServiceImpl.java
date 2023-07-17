@@ -109,7 +109,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     /**
      * @description 删除课程
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void removeCourse(String courseId) {
         // 1 根据课程ID删除小节

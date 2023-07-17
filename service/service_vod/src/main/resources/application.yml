@@ -8,6 +8,10 @@ spring:
   devtools:
     livereload:
       port: 35733
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
   servlet:
     multipart:
       # 最大上传单个文件大小：默认1MB

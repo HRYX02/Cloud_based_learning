@@ -11,11 +11,13 @@ import com.sxx.vod.service.VodService;
 import com.sxx.vod.utils.ConstantVodUtils;
 import com.sxx.vod.utils.InitVodClient;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * @author SHIXINXI
@@ -65,6 +67,25 @@ public class VodServiceImpl implements VodService {
             DefaultAcsClient client = InitVodClient.initVodClient(ConstantVodUtils.KEY_ID, ConstantVodUtils.KEY_SECRET);
             DeleteVideoRequest request = new DeleteVideoRequest();
             request.setVideoIds(id);
+            client.getAcsResponse(request);
+        } catch (ClientException e) {
+            e.printStackTrace();
+            throw new YunShangException(20001,"删除视频失败");
+        }
+    }
+
+    /**
+     * @description 删除多个阿里云视频的方法
+     * @param videoIdList
+     */
+    @Override
+    public void removeAlYunVideoList(List<String> videoIdList) {
+        try {
+            DefaultAcsClient client = InitVodClient.initVodClient(ConstantVodUtils.KEY_ID, ConstantVodUtils.KEY_SECRET);
+            DeleteVideoRequest request = new DeleteVideoRequest();
+            // 将videoIdList值转换成1,2,3...
+            String ids = StringUtils.join(videoIdList.toArray(), ',');
+            request.setVideoIds(ids);
             client.getAcsResponse(request);
         } catch (ClientException e) {
             e.printStackTrace();

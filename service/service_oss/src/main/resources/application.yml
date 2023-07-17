@@ -8,6 +8,10 @@ spring:
   devtools:
     livereload:
       port: 35732
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 
 # 阿里云 OSS
 # 不同的服务器，地址不同
