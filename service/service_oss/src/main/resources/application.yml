@@ -23,3 +23,7 @@ aliyun:
       keysecret: 7hqAQYxxxgRkoFmZP2wqnxbiMDJ0cm
       #bucket可以在控制台创建，也可以使用java代码创建
       bucketname: sxxstarbucket
+# 开启熔断机制
+feign:
+  hystrix:
+    enabled: true

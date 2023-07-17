@@ -27,3 +27,7 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:com/sxx/eduservice/mapper/xml/*.xml
+# 开启熔断机制
+feign:
+  hystrix:
+    enabled: true

@@ -2,10 +2,12 @@ package com.sxx.eduservice.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.sxx.commonutils.R;
 import com.sxx.eduservice.client.VodClient;
 import com.sxx.eduservice.entity.EduVideo;
 import com.sxx.eduservice.mapper.EduVideoMapper;
 import com.sxx.eduservice.service.EduVideoService;
+import com.sxx.exceptionhandler.YunShangException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +31,7 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
     private VodClient vodClient;
 
     /**
-     * @description 删除小节
-     * TODO 视频文件对应删除
+     * @description 删除课程，阿里云视频文件对应删除
      * @param courseId 课程ID
      */
     @Override
@@ -73,7 +74,10 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
         String videoSourceId = video.getVideoSourceId();
         // 判断小节中是否有视频ID
         if (StringUtils.isNotEmpty(videoSourceId)) {
-            vodClient.removeAlYunVideo(video.getVideoSourceId());
+            R result = vodClient.removeAlYunVideo(video.getVideoSourceId());
+            if (result.getCode() == 20001){
+                throw new YunShangException(20001,"删除视频失败，熔断器...");
+            }
         }
         this.removeById(id);
     }
