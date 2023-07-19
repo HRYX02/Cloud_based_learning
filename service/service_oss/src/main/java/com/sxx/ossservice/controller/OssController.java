@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Api(description = "头像上传")
 @CrossOrigin
 @RestController
-@RequestMapping("/eduoss/fileoss")
+@RequestMapping("/ossservice/fileoss")
 public class OssController {
 
     @Autowired

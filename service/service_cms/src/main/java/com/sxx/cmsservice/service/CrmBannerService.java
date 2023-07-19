@@ -1,7 +1,7 @@
 package com.sxx.cmsservice.service;
 
-import com.sxx.cmsservice.entity.CrmBanner;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.sxx.cmsservice.entity.CrmBanner;
 
 /**
  * <p>
