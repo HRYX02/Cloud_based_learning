@@ -24,6 +24,7 @@ import java.time.Duration;
  * @description Redis配置类
  * @EnableCaching 开启缓存
  * @Configuration 配置类
+ * TODO: 缓存的接口只完成了一个
  * @create 2023-07-20-19:52
  */
 
