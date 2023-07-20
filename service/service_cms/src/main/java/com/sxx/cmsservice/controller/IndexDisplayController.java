@@ -9,6 +9,7 @@ import com.sxx.commonutils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,7 @@ public class IndexDisplayController {
     /**
      * @description 查询前8条热门课程，查询前4条名师
      */
+    @Cacheable(value = "index",key = "'indexHotList'")
     @ApiOperation(value = "查询入门课程老师")
     @GetMapping("/index")
     public R index() {

@@ -34,7 +34,7 @@ public class CrmBannerReceptionController {
     @ApiOperation(value = "查询所有轮播图")
     @GetMapping("/getAllBanner")
     public R getAllBanner() {
-        List<CrmBanner> list = bannerService.list(null);
+        List<CrmBanner> list = bannerService.selectAllBanner();
         return R.ok().data("list",list);
     }
 
