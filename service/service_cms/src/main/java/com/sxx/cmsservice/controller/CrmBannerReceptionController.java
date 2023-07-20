@@ -5,6 +5,7 @@ import com.sxx.cmsservice.entity.CrmBanner;
 import com.sxx.cmsservice.service.CrmBannerService;
 import com.sxx.commonutils.R;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +28,11 @@ public class CrmBannerReceptionController {
     @Autowired
     private CrmBannerService bannerService;
 
-    //查询所有banner
-    @GetMapping("getAllBanner")
+    /**
+     * @description 查询所有轮播图
+     */
+    @ApiOperation(value = "查询所有轮播图")
+    @GetMapping("/getAllBanner")
     public R getAllBanner() {
         List<CrmBanner> list = bannerService.list(null);
         return R.ok().data("list",list);
