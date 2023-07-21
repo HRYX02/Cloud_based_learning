@@ -1,4 +1,4 @@
-package com.sxx.vodservice.utils;
+package com.sxx.msmservice.utils;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ConstantVodUtils implements InitializingBean {
-    @Value("${aliyun.vod.file.keyid}")
+    @Value("${aliyun.msm.file.keyid}")
     private String accessKeyId;
-    @Value("${aliyun.vod.file.keysecret}")
+    @Value("${aliyun.msm.file.keysecret}")
     private String accessKeySecret;
     public static String KEY_ID;
     public static String KEY_SECRET;

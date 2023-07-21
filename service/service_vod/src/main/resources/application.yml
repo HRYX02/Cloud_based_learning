@@ -19,7 +19,7 @@ spring:
       # 最大置总上传的数据大小：默认10MB
       max-request-size: 1024MB
 aliyun:
-  oss:
+  vod:
     file:
       keyid: LTAI5t6Mk4SiuysEEZySK1UW
       keysecret: 7hqAQYxxxgRkoFmZP2wqnxbiMDJ0cm
