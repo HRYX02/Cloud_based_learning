@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author SHIXINXI
- * @description
+ * @description 阿里云视频点播服务模块
  * @create 2023-07-16-18:18
  */
 @EnableDiscoveryClient

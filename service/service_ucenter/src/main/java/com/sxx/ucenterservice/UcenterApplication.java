@@ -1,26 +1,27 @@
-package com.sxx.msmservice;
+package com.sxx.ucenterservice;
 
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author SHIXINXI
- * @description
- * @create 2023-07-20-下午 9:12
+ * @description 前台用户登录注册模块
+ * @create 2023-07-21-下午 9:00
  */
 @EnableFeignClients
 @EnableDiscoveryClient
 @Slf4j
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@SpringBootApplication
 @ComponentScan(basePackages = {"com.sxx"})
-public class MsmApplication {
+@MapperScan("com.sxx.ucenterservice.mapper")
+public class UcenterApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MsmApplication.class, args);
-        log.info("service-msm模块启动成功");
+        SpringApplication.run(UcenterApplication.class, args);
+        log.info("service_ucenterservice模块启动成功");
     }
 }

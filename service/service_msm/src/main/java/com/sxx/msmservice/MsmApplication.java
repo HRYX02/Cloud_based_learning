@@ -1,27 +1,26 @@
-package com.sxx.cmsservice;
+package com.sxx.msmservice;
 
 import lombok.extern.slf4j.Slf4j;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author SHIXINXI
- * @description 前台首页&后台轮播图管理模块
- * @create 2023-07-18-19:02
+ * @description 阿里云短信服务模块
+ * @create 2023-07-20-下午 9:12
  */
 @EnableFeignClients
 @EnableDiscoveryClient
 @Slf4j
-@SpringBootApplication
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @ComponentScan(basePackages = {"com.sxx"})
-@MapperScan("com.sxx.cmsservice.mapper")
-public class CmsApplication {
+public class MsmApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CmsApplication.class, args);
-        log.info("service_cms模块启动成功");
+        SpringApplication.run(MsmApplication.class, args);
+        log.info("service-msm模块启动成功");
     }
 }

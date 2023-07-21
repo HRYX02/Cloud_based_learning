@@ -98,7 +98,9 @@ clone项目时，更改日志文件位置
 
 后端直接在controller上加```@CrossOrigin()```注解
 
-### service_edu模块
+### service-edu模块
+
+> 后台老师、课程、轮播图管理
 
 #### easy-excel读写
 
@@ -143,7 +145,9 @@ mybatis-plus:
 
 
 
-### service_oss模块
+### service-oss模块
+
+> 阿里云oss服务模块
 
 #### 启动时出现保存
 
@@ -151,7 +155,9 @@ mybatis-plus:
 #### 解决
 ```@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)```启动时忽略数据源
 
-### service_vod模块
+### service-vod模块
+
+> 阿里云视频点播服务模块
 
 #### 上传视频Tomcat报错超过1M
 
@@ -169,15 +175,30 @@ spring:
       max-request-size: 1024MB
 ```
 
+### service-cms模块
+
+> 前台首页&后台轮播图管理模块
+
+### service-msm模块
+
+> 阿里云短信服务模块
+
+### service-ucenter模块
+
+> 前台用户登录注册模块
+
 ### nginx
 
 #### nginx代理
 
 - vue端口:80
 - nginx代理端口: 8080 
-- service_edu模块端口:8081
-- service_oss模块端口:8082
-- service_vod模块端口:8083
+- service-edu模块端口:8081
+- service-oss模块端口:8082
+- service-vod模块端口:8083
+- service-cms模块端口:8084
+- service-msm模块端口:8085
+- service-ucenter模块端口:8086
 
 #### nginx传输文件大小限制
 

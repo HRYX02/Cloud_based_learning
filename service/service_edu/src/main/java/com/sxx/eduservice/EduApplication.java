@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author SHIXINXI
- * @description
+ * @description 后台老师、课程、轮播图管理
  * @create 2023-05-31-20:01
  * @ComponentScan 包扫描规则 目的扫描swagger配置类
  * @EnableDiscoveryClient 可以nacos进行注册
