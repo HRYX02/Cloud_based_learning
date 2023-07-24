@@ -1,4 +1,4 @@
-package com.sxx.eduservice.entity.vo;
+package com.sxx.eduservice.entity.vo.background;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

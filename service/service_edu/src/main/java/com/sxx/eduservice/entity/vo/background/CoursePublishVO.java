@@ -1,4 +1,4 @@
-package com.sxx.eduservice.entity.vo;
+package com.sxx.eduservice.entity.vo.background;
 
 import lombok.Data;
 

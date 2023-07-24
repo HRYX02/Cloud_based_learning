@@ -1,19 +1,27 @@
 package com.sxx.eduservice.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sxx.eduservice.entity.EduCourse;
 import com.sxx.eduservice.entity.EduCourseDescription;
-import com.sxx.eduservice.entity.vo.CourseInfoVo;
-import com.sxx.eduservice.entity.vo.CoursePublishVO;
+import com.sxx.eduservice.entity.vo.background.CourseInfoVo;
+import com.sxx.eduservice.entity.vo.background.CoursePublishVO;
+import com.sxx.eduservice.entity.vo.reception.CourseVo;
 import com.sxx.eduservice.mapper.EduCourseMapper;
 import com.sxx.eduservice.service.EduChapterService;
 import com.sxx.eduservice.service.EduCourseDescriptionService;
 import com.sxx.eduservice.service.EduCourseService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sxx.exceptionhandler.YunShangException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -126,5 +134,38 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         if (!remove) {
             throw new YunShangException(20001,"删除失败");
         }
+    }
+
+    @Override
+    public Map<String, Object> getCourseList(Page<EduCourse> pageInfo, CourseVo courseVo) {
+        LambdaQueryWrapper<EduCourse> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(StringUtils.isNotEmpty(courseVo.getSubjectParentId()), EduCourse::getSubjectParentId, courseVo.getSubjectParentId());
+        queryWrapper.eq(StringUtils.isNotEmpty(courseVo.getSubjectId()), EduCourse::getSubjectId, courseVo.getSubjectId());
+        queryWrapper.orderByDesc(StringUtils.isNotEmpty(courseVo.getBuyCountSort()), EduCourse::getBuyCount);
+        queryWrapper.orderByDesc(StringUtils.isNotEmpty(courseVo.getGmtCreateSort()), EduCourse::getGmtCreate);
+        queryWrapper.orderByDesc(StringUtils.isNotEmpty(courseVo.getPriceSort()), EduCourse::getPrice);
+
+       this.page(pageInfo, queryWrapper);
+
+        List<EduCourse> records = pageInfo.getRecords();
+        long current = pageInfo.getCurrent();
+        long pages = pageInfo.getPages();
+        long size = pageInfo.getSize();
+        long total = pageInfo.getTotal();
+        boolean hasNext = pageInfo.hasNext();
+        boolean hasPrevious = pageInfo.hasPrevious();
+
+        //把分页数据获取出来，放到map集合
+        Map<String, Object> map = new HashMap<>();
+        map.put("items", records);
+        map.put("current", current);
+        map.put("pages", pages);
+        map.put("size", size);
+        map.put("total", total);
+        map.put("hasNext", hasNext);
+        map.put("hasPrevious", hasPrevious);
+
+        //map返回
+        return map;
     }
 }

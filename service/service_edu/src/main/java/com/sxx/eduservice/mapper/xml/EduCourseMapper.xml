@@ -3,7 +3,7 @@
 <mapper namespace="com.sxx.eduservice.mapper.EduCourseMapper">
 
     <!-- public CoursePublishVO getPublishCourseInfo(String courseId); -->
-    <select id="getPublishCourseInfo" resultType="com.sxx.eduservice.entity.vo.CoursePublishVO">
+    <select id="getPublishCourseInfo" resultType="com.sxx.eduservice.entity.vo.background.CoursePublishVO">
         SELECT ec.id,ec.title,ec.price,ec.lesson_num AS lessonNum,ec.cover,
                ecd.description,
                et.`name` AS teacherName,
