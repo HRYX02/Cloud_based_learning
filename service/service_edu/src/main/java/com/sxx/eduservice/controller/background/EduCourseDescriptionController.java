@@ -1,4 +1,4 @@
-package com.sxx.eduservice.controller;
+package com.sxx.eduservice.controller.background;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

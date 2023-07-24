@@ -60,6 +60,7 @@ public class UcenterMemberController {
         String memberId = JwtUtils.getMemberIdByJwtToken(request);
         // 查询数据库根据用户id获取用户信息
         UcenterMember member = memberService.getById(memberId);
+        log.info(member.toString());
         return R.ok().data("userInfo",member);
     }
 }

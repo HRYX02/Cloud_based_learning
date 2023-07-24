@@ -1,4 +1,4 @@
-package com.sxx.eduservice.controller;
+package com.sxx.eduservice.controller.background;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
