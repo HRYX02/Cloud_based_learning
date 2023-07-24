@@ -1,8 +1,11 @@
 package com.sxx.eduservice.controller.reception;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sxx.commonutils.R;
+import com.sxx.eduservice.entity.EduCourse;
 import com.sxx.eduservice.entity.EduTeacher;
+import com.sxx.eduservice.service.EduCourseService;
 import com.sxx.eduservice.service.EduTeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +30,8 @@ import java.util.Map;
 public class TeacherReceptionController {
     @Autowired
     private EduTeacherService teacherService;
+    @Autowired
+    private EduCourseService courseService;
 
     /**
      * @description 分页查询讲师的方法
@@ -37,4 +43,19 @@ public class TeacherReceptionController {
         Map<String, Object> map =  teacherService.getTeacherList(pageInfo);
         return R.ok().data(map);
     }
+
+    /**
+     * @description 讲师详情
+     */
+    @ApiOperation(value = "讲师详情")
+    @GetMapping("/getTeacherInfo/{teacherId}")
+    public R getTeacherInfo(@PathVariable @ApiParam(name = "teacherId",value = "讲师id") String teacherId){
+        EduTeacher eduTeacher = teacherService.getById(teacherId);
+
+        LambdaQueryWrapper<EduCourse> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(EduCourse::getTeacherId,teacherId);
+        List<EduCourse> courseList = courseService.list(queryWrapper);
+        return R.ok().data("teacher",eduTeacher).data("courseList",courseList);
+    }
+
 }
