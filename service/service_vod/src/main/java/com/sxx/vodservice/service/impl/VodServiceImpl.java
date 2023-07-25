@@ -6,6 +6,8 @@ import com.aliyun.vod.upload.resp.UploadStreamResponse;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
 import com.sxx.exceptionhandler.YunShangException;
 import com.sxx.vodservice.service.VodService;
 import com.sxx.vodservice.utils.ConstantVodUtils;
@@ -90,6 +92,23 @@ public class VodServiceImpl implements VodService {
         } catch (ClientException e) {
             e.printStackTrace();
             throw new YunShangException(20001,"删除视频失败");
+        }
+    }
+
+    @Override
+    public String getAlYunPlayAuth(String id) {
+        try {
+            DefaultAcsClient client = InitVodClient.initVodClient(ConstantVodUtils.KEY_ID, ConstantVodUtils.KEY_SECRET);
+            //创建获取凭证request和response对象
+            GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
+            //向request设置视频id
+            request.setVideoId(id);
+            //调用方法得到凭证
+            GetVideoPlayAuthResponse response = client.getAcsResponse(request);
+            String playAuth = response.getPlayAuth();
+            return playAuth;
+        } catch (ClientException e) {
+            throw new YunShangException(20001,"获取凭证失败");
         }
     }
 }

@@ -15,4 +15,6 @@ public interface VodService {
     void removeVideoAlYun(String id);
 
     void removeAlYunVideoList(List<String> videoIdList);
+
+    String getAlYunPlayAuth(String id);
 }

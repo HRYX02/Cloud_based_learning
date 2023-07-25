@@ -56,4 +56,15 @@ public class VodController {
         vodService.removeAlYunVideoList(videoIdList);
         return R.ok();
     }
+
+    /**
+     * @description 根据视频id获取视频凭证
+     * @param id
+     * @return
+     */
+    @GetMapping("/getPlayAuth/{id}")
+    public R getPlayAuth(@PathVariable String id) {
+        String PlayAuth = vodService.getAlYunPlayAuth(id);
+        return R.ok().data("playAuth",PlayAuth);
+    }
 }
