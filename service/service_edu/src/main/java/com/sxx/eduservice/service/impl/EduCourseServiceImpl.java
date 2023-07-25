@@ -7,7 +7,8 @@ import com.sxx.eduservice.entity.EduCourse;
 import com.sxx.eduservice.entity.EduCourseDescription;
 import com.sxx.eduservice.entity.vo.background.CourseInfoVo;
 import com.sxx.eduservice.entity.vo.background.CoursePublishVO;
-import com.sxx.eduservice.entity.vo.reception.CourseVo;
+import com.sxx.eduservice.entity.vo.reception.CourseReceptionInfoVo;
+import com.sxx.eduservice.entity.vo.reception.CourseReceptionQuery;
 import com.sxx.eduservice.mapper.EduCourseMapper;
 import com.sxx.eduservice.service.EduChapterService;
 import com.sxx.eduservice.service.EduCourseDescriptionService;
@@ -137,13 +138,13 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     }
 
     @Override
-    public Map<String, Object> getCourseList(Page<EduCourse> pageInfo, CourseVo courseVo) {
+    public Map<String, Object> getCourseList(Page<EduCourse> pageInfo, CourseReceptionQuery courseQuery) {
         LambdaQueryWrapper<EduCourse> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(StringUtils.isNotEmpty(courseVo.getSubjectParentId()), EduCourse::getSubjectParentId, courseVo.getSubjectParentId());
-        queryWrapper.eq(StringUtils.isNotEmpty(courseVo.getSubjectId()), EduCourse::getSubjectId, courseVo.getSubjectId());
-        queryWrapper.orderByDesc(StringUtils.isNotEmpty(courseVo.getBuyCountSort()), EduCourse::getBuyCount);
-        queryWrapper.orderByDesc(StringUtils.isNotEmpty(courseVo.getGmtCreateSort()), EduCourse::getGmtCreate);
-        queryWrapper.orderByDesc(StringUtils.isNotEmpty(courseVo.getPriceSort()), EduCourse::getPrice);
+        queryWrapper.eq(StringUtils.isNotEmpty(courseQuery.getSubjectParentId()), EduCourse::getSubjectParentId, courseQuery.getSubjectParentId());
+        queryWrapper.eq(StringUtils.isNotEmpty(courseQuery.getSubjectId()), EduCourse::getSubjectId, courseQuery.getSubjectId());
+        queryWrapper.orderByDesc(StringUtils.isNotEmpty(courseQuery.getBuyCountSort()), EduCourse::getBuyCount);
+        queryWrapper.orderByDesc(StringUtils.isNotEmpty(courseQuery.getGmtCreateSort()), EduCourse::getGmtCreate);
+        queryWrapper.orderByDesc(StringUtils.isNotEmpty(courseQuery.getPriceSort()), EduCourse::getPrice);
 
        this.page(pageInfo, queryWrapper);
 
@@ -167,5 +168,10 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
         //map返回
         return map;
+    }
+
+    @Override
+    public CourseReceptionInfoVo getReceptionCourseInfo(String courseId) {
+        return baseMapper.getReceptionCourseInfo(courseId);
     }
 }

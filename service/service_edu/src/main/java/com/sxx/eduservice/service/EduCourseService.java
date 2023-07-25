@@ -5,7 +5,8 @@ import com.sxx.eduservice.entity.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.sxx.eduservice.entity.vo.background.CourseInfoVo;
 import com.sxx.eduservice.entity.vo.background.CoursePublishVO;
-import com.sxx.eduservice.entity.vo.reception.CourseVo;
+import com.sxx.eduservice.entity.vo.reception.CourseReceptionInfoVo;
+import com.sxx.eduservice.entity.vo.reception.CourseReceptionQuery;
 
 import java.util.Map;
 
@@ -29,5 +30,7 @@ public interface EduCourseService extends IService<EduCourse> {
 
     void removeCourse(String courseId);
 
-    Map<String, Object> getCourseList(Page<EduCourse> pageInfo, CourseVo courseVo);
+    Map<String, Object> getCourseList(Page<EduCourse> pageInfo, CourseReceptionQuery courseQuery);
+
+    CourseReceptionInfoVo getReceptionCourseInfo(String courseId);
 }
