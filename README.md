@@ -199,6 +199,7 @@ spring:
 - service-cms模块端口:8084
 - service-msm模块端口:8085
 - service-ucenter模块端口:8086
+- service-comment模块端口:8087
 
 #### nginx传输文件大小限制
 
