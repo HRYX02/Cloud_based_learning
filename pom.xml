@@ -44,6 +44,7 @@
         <docker.image.prefix>zx</docker.image.prefix>
         <cloud-alibaba.version>0.2.2.RELEASE</cloud-alibaba.version>
         <redisCommonsPool.version>2.6.0</redisCommonsPool.version>
+        <wxpay-sdk.version>0.0.3</wxpay-sdk.version>
     </properties>
 
     <!--如果忍不了爆红就先将dependencyManagement注释，更新maven后再取消注释-->
@@ -211,6 +212,12 @@
                 <groupId>com.alibaba.otter</groupId>
                 <artifactId>canal.client</artifactId>
                 <version>${canal.client.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.wxpay</groupId>
+                <artifactId>wxpay-sdk</artifactId>
+                <version>${wxpay-sdk.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

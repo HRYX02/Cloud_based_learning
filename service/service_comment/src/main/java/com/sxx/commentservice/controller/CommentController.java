@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * <p>
- * 评论 前端控制器
- * </p>
- *
+ * TODO 待编写
  * @author SxxStar
  * @since 2023-07-28
  */

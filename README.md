@@ -187,6 +187,14 @@ spring:
 
 > 前台用户登录注册模块
 
+### service-comment模块(待编写)
+
+> 课程评论模块
+
+### service-order模块
+
+> 课程购买订单
+
 ### nginx
 
 #### nginx代理
@@ -200,6 +208,7 @@ spring:
 - service-msm模块端口:8085
 - service-ucenter模块端口:8086
 - service-comment模块端口:8087
+- service-order模块端口:8088
 
 #### nginx传输文件大小限制
 
