@@ -23,7 +23,3 @@ aliyun:
     file:
       keyid: LTAI5t6Mk4SiuysEEZySK1UW
       keysecret: 7hqAQYxxxgRkoFmZP2wqnxbiMDJ0cm
-# 开启熔断机制
-feign:
-  hystrix:
-    enabled: true

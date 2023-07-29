@@ -3,6 +3,7 @@ package com.sxx.ucenterservice.controller;
 
 import com.sxx.commonutils.JwtUtils;
 import com.sxx.commonutils.R;
+import com.sxx.commonutils.orderVo.UcenterMemberOrder;
 import com.sxx.ucenterservice.entity.UcenterMember;
 import com.sxx.ucenterservice.entity.vo.RegisterVo;
 import com.sxx.ucenterservice.service.UcenterMemberService;
@@ -10,6 +11,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,5 +64,18 @@ public class UcenterMemberController {
         UcenterMember member = memberService.getById(memberId);
         log.info(member.toString());
         return R.ok().data("userInfo",member);
+    }
+
+
+    /**
+     * @description 根据用户ID获取用户信息(供远程调用)
+     */
+    @ApiOperation(value = "根据id获取用户信息")
+    @PostMapping("/getUserInfoOrder/{id}")
+    public UcenterMemberOrder getUserInfoOrder(@PathVariable @ApiParam(name = "id",value = "用户ID") String id) {
+        UcenterMember member = memberService.getById(id);
+        UcenterMemberOrder ucenterMemberOrder = new UcenterMemberOrder();
+        BeanUtils.copyProperties(member,ucenterMemberOrder);
+        return ucenterMemberOrder;
     }
 }

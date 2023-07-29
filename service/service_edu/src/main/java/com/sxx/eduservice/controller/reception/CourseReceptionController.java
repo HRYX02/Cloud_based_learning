@@ -2,6 +2,7 @@ package com.sxx.eduservice.controller.reception;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sxx.commonutils.R;
+import com.sxx.commonutils.orderVo.CourseWebVoOrder;
 import com.sxx.eduservice.entity.EduCourse;
 import com.sxx.eduservice.entity.chapter.ChapterVO;
 import com.sxx.eduservice.entity.subject.OneSubject;
@@ -13,6 +14,7 @@ import com.sxx.eduservice.service.EduSubjectService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -70,5 +72,16 @@ public class CourseReceptionController {
         // 根据课程id查询章节和小节
         List<ChapterVO> chapterVideoList = chapterService.getChapterVideoByCourseId(courseId);
         return R.ok().data("courseWebVo",courseReceptionInfoVo).data("chapterVideoList",chapterVideoList);
+    }
+
+    /**
+     * @description 根据课程id查询课程信息
+     */
+    @PostMapping("/getCourseInfoOrder/{id}")
+    public CourseWebVoOrder getCourseInfoOrder(@PathVariable String id) {
+        CourseReceptionInfoVo courseInfo = courseService.getReceptionCourseInfo(id);
+        CourseWebVoOrder courseWebVoOrder = new CourseWebVoOrder();
+        BeanUtils.copyProperties(courseInfo,courseWebVoOrder);
+        return courseWebVoOrder;
     }
 }

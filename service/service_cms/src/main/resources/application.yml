@@ -38,11 +38,6 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:com/sxx/cmsservice/mapper/xml/*.xml
 
-# 开启熔断机制
-feign:
-  hystrix:
-    enabled: true
-
 aliyun:
   oss:
     file:
