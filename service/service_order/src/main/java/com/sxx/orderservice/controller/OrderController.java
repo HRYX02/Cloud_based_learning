@@ -55,5 +55,26 @@ public class OrderController {
         Order order = orderService.getOne(queryWrapper);
         return R.ok().data("order",order);
     }
+
+    /**
+     * @description 根据课程id和用户id查询订单表中订单状态
+     * @param courseId 课程ID
+     * @param memberId 用户ID
+     * @return
+     */
+    @GetMapping("isBuyCourse/{courseId}/{memberId}")
+    public boolean isBuyCourse(@PathVariable String courseId,@PathVariable String memberId) {
+        LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Order::getCourseId,courseId);
+        queryWrapper.eq(Order::getMemberId,memberId);
+        // 支付状态 1代表已经支付
+        queryWrapper.eq(Order::getStatus,1);
+        int count = orderService.count(queryWrapper);
+        if(count>0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 

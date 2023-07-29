@@ -1,8 +1,10 @@
 package com.sxx.eduservice.controller.reception;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sxx.commonutils.JwtUtils;
 import com.sxx.commonutils.R;
 import com.sxx.commonutils.orderVo.CourseWebVoOrder;
+import com.sxx.eduservice.client.OrdersClient;
 import com.sxx.eduservice.entity.EduCourse;
 import com.sxx.eduservice.entity.chapter.ChapterVO;
 import com.sxx.eduservice.entity.subject.OneSubject;
@@ -18,6 +20,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +41,8 @@ public class CourseReceptionController {
     private EduSubjectService subjectService;
     @Autowired
     private EduChapterService chapterService;
+    @Autowired
+    private OrdersClient ordersClient;
 
     @ApiOperation(value = "查询课程列表")
     @PostMapping("getCourseList/{page}/{limit}")
@@ -65,13 +70,16 @@ public class CourseReceptionController {
      */
     @ApiOperation("查看课程详情方法")
     @GetMapping("/getCourseInfo/{courseId}")
-    public R getCourseInfo(@PathVariable @ApiParam(name = "courseId",value = "课程id") String courseId) {
+    public R getCourseInfo(@PathVariable @ApiParam(name = "courseId",value = "课程id") String courseId, HttpServletRequest request) {
         // 根据课程id，编写sql语句查询课程信息
         CourseReceptionInfoVo courseReceptionInfoVo = courseService.getReceptionCourseInfo(courseId);
 
         // 根据课程id查询章节和小节
         List<ChapterVO> chapterVideoList = chapterService.getChapterVideoByCourseId(courseId);
-        return R.ok().data("courseWebVo",courseReceptionInfoVo).data("chapterVideoList",chapterVideoList);
+
+        //根据课程id和用户id查询当前课程是否已经支付过了
+        boolean buyCourse = ordersClient.isBuyCourse(courseId, JwtUtils.getMemberIdByJwtToken(request));
+        return R.ok().data("courseWebVo",courseReceptionInfoVo).data("chapterVideoList",chapterVideoList).data("isBuy",buyCourse);
     }
 
     /**
