@@ -100,4 +100,9 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         member.setAvatar("http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoj0hHXhgJNOTSOFsS4uZs8x1ConecaVOB8eIl115xmJZcT4oCicvia7wMEufibKtTLqiaJeanU2Lpg3w/132");
         this.save(member);
     }
+
+    @Override
+    public Integer countRegisterDay(String day) {
+        return baseMapper.countRegisterDay(day);
+    }
 }

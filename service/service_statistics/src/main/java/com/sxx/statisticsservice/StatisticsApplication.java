@@ -7,16 +7,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author SHIXINXI
  * @description
  * @create 2023-07-29-下午 5:59
+ * @EnableScheduling 定时任务
  */
 @EnableFeignClients
 @EnableDiscoveryClient
 @Slf4j
 @SpringBootApplication
+@EnableScheduling
 @ComponentScan(basePackages = {"com.sxx"})
 @MapperScan("com.sxx.statisticsservice.mapper")
 public class StatisticsApplication {
