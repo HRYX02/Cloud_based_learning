@@ -1,0 +1,57 @@
+# 服务端口
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway
+  devtools:
+    livereload:
+      port: 36002
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      # 使用服务发现路由
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: service-edu
+        #设置路由的uri   eg: lb://nacos注册服务名称
+          uri: lb://service-edu
+        #设置路由断言
+          predicates:
+          - Path=/eduservice/**
+        - id: service-oss
+          uri: lb://service-oss
+          predicates:
+          - Path=/ossservice/**
+        - id: service-vod
+          uri: lb://service-vod
+          predicates:
+          - Path=/vodservice/**
+        - id: service-cms
+          uri: lb://service-cms
+          predicates:
+          - Path=/cmsservice/**
+        - id: service-msm
+          uri: lb://service-msm
+          predicates:
+          - Path=/msmservice/**
+        - id: service-ucenter
+          uri: lb://service-ucenter
+          predicates:
+          - Path=/ucenterservice/**
+        - id: service-comment
+          uri: lb://service-comment
+          predicates:
+          - Path=/commentservice/**
+        - id: service-order
+          uri: lb://service-order
+          predicates:
+          - Path=/orderservice/**
+        - id: service-statistics
+          uri: lb://service-statistics
+          predicates:
+          - Path=/statisticsservice/**

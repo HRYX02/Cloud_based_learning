@@ -20,7 +20,6 @@ import java.util.Map;
  * @since 2023-07-29
  */
 @Api(description = "网站统计日数据")
-@CrossOrigin
 @RestController
 @RequestMapping("/statisticsservice/sta")
 public class StatisticsDailyController {

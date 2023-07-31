@@ -15,7 +15,8 @@
         <module>service</module>
         <module>common</module>
         <module>common/service_base</module>
-        <module>canal_client</module>
+        <module>common/common_utils</module>
+        <module>infrastructure</module>
     </modules>
     <version>0.0.1-SNAPSHOT</version>
 
