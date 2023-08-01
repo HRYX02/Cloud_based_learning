@@ -18,7 +18,7 @@ import org.springframework.context.annotation.ComponentScan;
 @Slf4j
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.sxx"})
-@MapperScan(basePackages = {"com.sxx"})
+@MapperScan(basePackages = {"com.sxx.aclservice.mapper"})
 public class AclApplication {
     public static void main(String[] args) {
         SpringApplication.run(AclApplication.class, args);

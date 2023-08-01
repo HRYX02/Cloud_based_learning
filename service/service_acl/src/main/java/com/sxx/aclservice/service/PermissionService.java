@@ -30,7 +30,7 @@ public interface PermissionService extends IService<Permission> {
      * @description 给角色分配权限
      * @return
      */
-    void saveRolePermissionRealtionShip(String roleId, String[] permissionId);
+    void saveRolePermissionRealtionShip(String roleId, String[] permissionIds);
 
     /**
      * @description 递归删除菜单
@@ -48,20 +48,8 @@ public interface PermissionService extends IService<Permission> {
     List<JSONObject> selectPermissionByUserId(String id);
 
     /**
-     * @description 获取全部菜单
-     * @return
-     */
-    List<Permission> queryAllMenuGuli();
-
-    /**
      * @description 递归删除菜单
      * @return
      */
     void removeChildByIdGuli(String id);
-
-    /**
-     * @description 给角色分配权限
-     * @return
-     */
-    void saveRolePermissionRealtionShipGuli(String roleId, String[] permissionId);
 }

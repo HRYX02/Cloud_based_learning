@@ -4,7 +4,9 @@ package com.sxx.aclservice.controller;
 import com.sxx.aclservice.entity.Permission;
 import com.sxx.aclservice.service.PermissionService;
 import com.sxx.commonutils.R;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ import java.util.List;
  * @author SxxStar
  * @date 2023.8.1
  */
+@Api(description = "菜单管理")
 @RestController
 @RequestMapping("/admin/acl/permission")
 public class PermissionController {
@@ -29,7 +32,7 @@ public class PermissionController {
     @ApiOperation(value = "查询所有菜单")
     @GetMapping
     public R indexAllPermission() {
-        List<Permission> list =  permissionService.queryAllMenuGuli();
+        List<Permission> list =  permissionService.queryAllMenu();
         return R.ok().data("children",list);
     }
 
@@ -40,15 +43,15 @@ public class PermissionController {
      */
     @ApiOperation(value = "递归删除菜单")
     @DeleteMapping("remove/{id}")
-    public R remove(@PathVariable String id) {
-        permissionService.removeChildByIdGuli(id);
+    public R remove(@PathVariable @ApiParam(name="id",value = "菜单ID") String id) {
+        permissionService.removeChildById(id);
         return R.ok();
     }
 
     @ApiOperation(value = "给角色分配权限")
     @PostMapping("/doAssign")
-    public R doAssign(String roleId,String[] permissionId) {
-        permissionService.saveRolePermissionRealtionShipGuli(roleId,permissionId);
+    public R doAssign(@RequestParam(name = "roleId") @ApiParam(name = "roleId",value = "角色ID") String roleId,@RequestParam(name = "permissionId") @ApiParam(name = "permissionId",value = "菜单ID") String[] permissionId) {
+        permissionService.saveRolePermissionRealtionShip(roleId,permissionId);
         return R.ok();
     }
 
