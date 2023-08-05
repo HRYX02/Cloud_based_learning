@@ -10,7 +10,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +26,6 @@ import java.util.Map;
 @Api(description = "首页热门课程和名师接口")
 @RestController
 @RequestMapping("/cmsservice/indexdisplay")
-@CrossOrigin
 public class IndexDisplayController {
     @Autowired
     private EduCourseService courseService;

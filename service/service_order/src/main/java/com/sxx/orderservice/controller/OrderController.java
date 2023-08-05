@@ -25,7 +25,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Api(description = "订单")
 @Slf4j
-@CrossOrigin
 @RestController
 @RequestMapping("/orderservice/order")
 public class OrderController {

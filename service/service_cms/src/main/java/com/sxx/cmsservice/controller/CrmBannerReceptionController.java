@@ -20,7 +20,6 @@ import java.util.List;
  * @since 2023-07-18
  */
 @Api(description = "前台轮播图接口")
-@CrossOrigin
 @RestController
 @RequestMapping("/cmsservice/reception")
 public class CrmBannerReceptionController {

@@ -13,10 +13,12 @@
     <packaging>pom</packaging>
     <modules>
         <module>service_base</module>
-        <module>common-utils</module>
+        <module>common_utils</module>
+        <module>spring_security</module>
     </modules>
 
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -34,20 +36,20 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <scope>provided </scope>
+            <scope>provided</scope>
         </dependency>
 
         <!--swagger-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <scope>provided </scope>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <scope>provided </scope>
+            <scope>provided</scope>
         </dependency>
 
         <!-- redis -->

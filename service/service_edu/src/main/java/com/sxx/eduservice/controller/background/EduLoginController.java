@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 @Api(description = "讲师登录")
 @Slf4j
 @RestController
-@CrossOrigin()
 @RequestMapping("/eduservice/user")
 public class EduLoginController {
 
