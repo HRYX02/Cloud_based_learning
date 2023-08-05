@@ -18,6 +18,7 @@ import java.util.List;
  */
 @Api(description = "章节视频")
 @RestController
+@CrossOrigin
 @RequestMapping("/vodservice/video")
 public class VodController {
 

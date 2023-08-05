@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(description = "课程大纲-小节")
 @Slf4j
 @RestController
+@CrossOrigin
 @RequestMapping("/eduservice/video")
 public class EduVideoController {
 

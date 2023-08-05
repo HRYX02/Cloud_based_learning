@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Api(description = "云上学堂短信登录接口")
 @RestController
+@CrossOrigin
 @RequestMapping("/msmservice/msm")
 public class MsmController {
     @Autowired

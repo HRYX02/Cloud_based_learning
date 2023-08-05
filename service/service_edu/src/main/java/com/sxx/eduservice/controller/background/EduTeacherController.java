@@ -28,6 +28,7 @@ import java.util.Map;
 @Api(description = "讲师管理")
 @Slf4j
 @RestController
+@CrossOrigin
 @RequestMapping("/eduservice/teacher")
 public class EduTeacherController {
 

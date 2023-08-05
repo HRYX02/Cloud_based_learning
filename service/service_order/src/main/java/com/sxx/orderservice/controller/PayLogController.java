@@ -4,10 +4,7 @@ package com.sxx.orderservice.controller;
 import com.sxx.commonutils.R;
 import com.sxx.orderservice.service.PayLogService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -20,6 +17,7 @@ import java.util.Map;
  * @since 2023-07-28
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/orderservice/paylog")
 public class PayLogController {
 

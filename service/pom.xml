@@ -19,7 +19,6 @@
         <module>service_comment</module>
         <module>service_order</module>
         <module>service_statistics</module>
-        <module>service_acl</module>
     </modules>
 
     <dependencies>
@@ -44,12 +43,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-        </dependency>
-
-        <!--服务注册-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
         <!--服务调用-->

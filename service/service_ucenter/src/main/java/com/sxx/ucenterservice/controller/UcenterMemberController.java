@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Api(description = "登录注册")
 @Slf4j
+@CrossOrigin
 @RequestMapping("/ucenterservice/member")
 public class UcenterMemberController {
 

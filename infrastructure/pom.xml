@@ -13,7 +13,6 @@
 
     <modules>
         <module>canal_client</module>
-        <module>api_gateway</module>
     </modules>
     <build>
         <plugins>

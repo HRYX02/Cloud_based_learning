@@ -21,6 +21,7 @@ import java.util.Map;
  */
 @Api(description = "网站统计日数据")
 @RestController
+@CrossOrigin
 @RequestMapping("/statisticsservice/sta")
 public class StatisticsDailyController {
 

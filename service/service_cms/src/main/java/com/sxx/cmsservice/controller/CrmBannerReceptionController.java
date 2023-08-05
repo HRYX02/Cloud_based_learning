@@ -21,6 +21,7 @@ import java.util.List;
  */
 @Api(description = "前台轮播图接口")
 @RestController
+@CrossOrigin
 @RequestMapping("/cmsservice/reception")
 public class CrmBannerReceptionController {
 

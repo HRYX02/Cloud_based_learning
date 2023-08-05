@@ -23,6 +23,7 @@ import java.util.List;
 @Api(description = "课程科目")
 @Slf4j
 @RestController
+@CrossOrigin
 @RequestMapping("/eduservice/subject")
 public class EduSubjectController {
     @Autowired

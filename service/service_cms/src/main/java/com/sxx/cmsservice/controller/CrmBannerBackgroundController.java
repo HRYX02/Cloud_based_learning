@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @Api(description = "后台轮播图接口")
 @RestController
+@CrossOrigin
 @RequestMapping("/cmsservice/bannerbackground")
 public class CrmBannerBackgroundController {
     @Autowired

@@ -1,6 +1,7 @@
 package com.sxx.eduservice.controller.background;
 
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author SxxStar
  * @since 2023-06-14
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/eduservice/edu-course-description")
 public class EduCourseDescriptionController {

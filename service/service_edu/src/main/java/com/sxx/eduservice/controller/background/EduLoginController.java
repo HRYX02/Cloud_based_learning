@@ -2,6 +2,7 @@ package com.sxx.eduservice.controller.background;
 
 import com.sxx.commonutils.R;
 import com.sxx.eduservice.entity.User;
+import com.sxx.eduservice.entity.vo.background.UserVo;
 import com.sxx.eduservice.service.EduLoginService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(description = "讲师登录")
 @Slf4j
 @RestController
+@CrossOrigin
 @RequestMapping("/eduservice/user")
 public class EduLoginController {
 
@@ -28,7 +30,10 @@ public class EduLoginController {
      * @description 登录
      */
     @PostMapping("/login")
-    public R login(@RequestBody User user) {
+    public R login(@RequestBody UserVo userVo) {
+        User user = new User();
+        user.setUserName(userVo.getUsername());
+        user.setPassword(userVo.getPassword());
         String token =  loginService.login(user);
         return R.ok().data("token",token);
     }
